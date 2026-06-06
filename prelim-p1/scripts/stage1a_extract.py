@@ -26,7 +26,7 @@ import numpy as np  # noqa: E402
 import stable_pretraining as spt  # noqa: E402
 import stable_worldmodel as swm  # noqa: E402
 import torch  # noqa: E402
-from diagnose_pusht_latent_contacts import contact_blocks_from_state  # noqa: E402
+from contact_fallback import contact_blocks_from_state  # noqa: E402
 from torchvision.transforms import v2 as transforms  # noqa: E402
 
 
