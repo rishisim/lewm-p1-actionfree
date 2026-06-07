@@ -15,12 +15,14 @@ PRESETS = {
         "out": DATASET_DIR / "pusht_expert_train_mini.lance",
         "keys": ["pixels", "action", "proprio", "state"],
         "episode_key": "episode_idx",
+        "nan_to_num_keys": [],
     },
     "reacher": {
         "src": DATASET_DIR / "reacher.h5",
         "out": DATASET_DIR / "reacher_mini.lance",
         "keys": ["pixels", "action", "observation"],
         "episode_key": "ep_idx",
+        "nan_to_num_keys": ["action"],
     },
 }
 
@@ -52,7 +54,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def iter_episode_batches(src, data_keys, episode_key, n_rows, chunk_rows):
+def iter_episode_batches(src, data_keys, episode_key, nan_to_num_keys, n_rows, chunk_rows):
     with h5py.File(src, "r") as f:
         missing = [key for key in [episode_key, *data_keys] if key not in f]
         if missing:
@@ -89,6 +91,8 @@ def iter_episode_batches(src, data_keys, episode_key, n_rows, chunk_rows):
             episode = {}
             for key in data_keys:
                 values = np.asarray(f[key][start:stop])
+                if key in nan_to_num_keys:
+                    values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
                 episode[key] = [values[i] for i in range(len(values))]
             batch.append(episode)
             batch_rows += stop - start
@@ -109,6 +113,7 @@ def main():
     out = args.out or preset["out"]
     data_keys = preset["keys"]
     episode_key = preset["episode_key"]
+    nan_to_num_keys = set(preset["nan_to_num_keys"])
     if args.chunk_rows < 1:
         raise ValueError("--chunk-rows must be at least 1")
 
@@ -116,7 +121,9 @@ def main():
     row_count = 0
     with LanceWriter(out, mode="overwrite") as writer:
         for batch_idx, (episodes, batch_rows, total_rows) in enumerate(
-            iter_episode_batches(src, data_keys, episode_key, args.n_rows, args.chunk_rows),
+            iter_episode_batches(
+                src, data_keys, episode_key, nan_to_num_keys, args.n_rows, args.chunk_rows
+            ),
             start=1,
         ):
             writer.write_episodes(episodes)

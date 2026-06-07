@@ -14,6 +14,32 @@ from module import SIGReg
 from utils import get_column_normalizer, get_img_preprocessor, SaveCkptCallback
 
 
+def remap_legacy_vit_keys(state_dict):
+    remapped = {}
+    for key, value in state_dict.items():
+        new_key = key
+        if key.startswith("encoder.encoder.layer."):
+            new_key = key.replace("encoder.encoder.layer.", "encoder.layers.", 1)
+            new_key = new_key.replace(".attention.attention.query.", ".attention.q_proj.")
+            new_key = new_key.replace(".attention.attention.key.", ".attention.k_proj.")
+            new_key = new_key.replace(".attention.attention.value.", ".attention.v_proj.")
+            new_key = new_key.replace(".attention.output.dense.", ".attention.o_proj.")
+            new_key = new_key.replace(".intermediate.dense.", ".mlp.fc1.")
+            new_key = new_key.replace(".output.dense.", ".mlp.fc2.")
+        remapped[new_key] = value
+    return remapped
+
+
+def load_model_weights(model, ckpt):
+    state_dict = torch.load(ckpt, map_location="cpu", weights_only=True)
+    try:
+        model.load_state_dict(state_dict)
+    except RuntimeError as exc:
+        if not any(key.startswith("encoder.encoder.layer.") for key in state_dict):
+            raise exc
+        model.load_state_dict(remap_legacy_vit_keys(state_dict))
+
+
 def lejepa_forward(self, batch, stage, cfg):
     """encode observations, predict next states, compute losses."""
 
@@ -44,6 +70,9 @@ def lejepa_forward(self, batch, stage, cfg):
     output["loss"] = output["pred_loss"] + lambd * output["sigreg_loss"]  
 
     losses_dict = {f"{stage}/{k}": v.detach() for k, v in output.items() if "loss" in k}
+    if stage == "validate":
+        identity_baseline_mse = (tgt_emb - ctx_emb[:, -1:].expand_as(tgt_emb)).pow(2).mean()
+        losses_dict[f"{stage}/identity_baseline_mse"] = identity_baseline_mse.detach()
     self.log_dict(losses_dict, on_step=True, sync_dist=True)
     return output
 
@@ -139,6 +168,12 @@ def run(cfg):
         data=data_module,
         ckpt_path=ckpt_path if ckpt_path.exists() else None,
     )
+
+    ckpt = cfg.get("ckpt_path", None)
+    if ckpt:
+        load_model_weights(world_model.model, ckpt)
+        trainer.validate(world_model, val)
+        return
 
     manager()
     return
