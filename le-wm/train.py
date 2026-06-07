@@ -23,10 +23,6 @@ def lejepa_forward(self, batch, stage, cfg):
 
     # Replace NaN values with 0 (occurs at sequence boundaries)
     batch["action"] = torch.nan_to_num(batch["action"], 0.0)
-    if cfg.get("action_free", False):
-        # P1 stub: drop action conditioning during pretraining.
-        batch["action"] = torch.zeros_like(batch["action"])
-
     output = self.model.encode(batch)
 
     emb = output["emb"]  # (B, T, D)
@@ -34,6 +30,10 @@ def lejepa_forward(self, batch, stage, cfg):
 
     ctx_emb = emb[:, :ctx_len]
     ctx_act = act_emb[:, : ctx_len]
+
+    # action-free pretraining toggle
+    if cfg.get("action_free", False):
+        ctx_act = torch.zeros_like(ctx_act)
 
     tgt_emb = emb[:, n_preds:] # label
     pred_emb = self.model.predict(ctx_emb, ctx_act) # pred
