@@ -87,7 +87,7 @@
     "caveat": "HDF5 has no n_contacts; this uses the prior geometric fallback from 7D state."
   },
   "elapsed_seconds": 7.650357708997035,
-  "cache_path": "/Users/rishisim/Documents/research/World Models/prelim-p1/outputs/stage1a_latents.npz",
+  "cache_path": "/Users/rishisim/Documents/research/lewm-p1-inversedynamics/prelim-p1/outputs/stage1a_latents.npz",
   "trajectory_records": [
     {
       "episode_id": 1603,

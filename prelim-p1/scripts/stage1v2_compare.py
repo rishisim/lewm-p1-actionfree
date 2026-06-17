@@ -651,7 +651,7 @@ def make_report(stage0: dict, extraction: dict, results: dict) -> str:
         "",
         f"Scaling status: `{results['data_scaling']['status']}`; 50% to 100% relative test-MSE drop `{results['data_scaling']['last_step_relative_drop']:.6f}`.",
         "",
-        f"![Ridge scaling]({results['data_scaling']['plot']})",
+        f"![Ridge scaling]({Path(results['data_scaling']['plot']).name})",
         "",
         "## 1c Contact Split",
         "",

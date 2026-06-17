@@ -62,7 +62,7 @@ MLP probe: 576->512->192 ReLU MLP, stopped at epoch 165, best validation epoch 1
 
 Scaling status: `still_dropping`; 50% to 100% relative test-MSE drop `0.145441`.
 
-![Ridge scaling](/Users/rishisim/Documents/research/World Models/prelim-p1/outputs/stage1v2_ridge_scaling.png)
+![Ridge scaling](stage1v2_ridge_scaling.png)
 
 ## 1c Contact Split
 

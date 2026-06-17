@@ -1,4 +1,4 @@
-# LeWorldModel (LeWM) Reconnaissance Report
+# LeWM Reconnaissance Report
 
 Date: 2026-05-26  
 Scope: read-only reconnaissance. I cloned `lucas-maes/le-wm` and inspected code/configs. I also inspected Hugging Face metadata and read-only dependency source for `stable-worldmodel` / `stable-pretraining`. I did not install packages, create an environment, download checkpoints, or download datasets.

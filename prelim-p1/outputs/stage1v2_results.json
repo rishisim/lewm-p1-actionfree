@@ -298,7 +298,7 @@
         "test_mse": 0.12397227436304092
       }
     ],
-    "plot": "/Users/rishisim/Documents/research/World Models/prelim-p1/outputs/stage1v2_ridge_scaling.png",
+    "plot": "/Users/rishisim/Documents/research/lewm-p1-inversedynamics/prelim-p1/outputs/stage1v2_ridge_scaling.png",
     "last_step_relative_drop": 0.14544136327746515,
     "status": "still_dropping"
   },
