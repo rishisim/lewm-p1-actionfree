@@ -1,0 +1,5 @@
+data_fraction,scratch,pretrain_ft,pretrain_invdyn,band
+5,10,26,40,8
+25,34,48,59,6
+50,56,67,74,4
+100,78,85,89,3
