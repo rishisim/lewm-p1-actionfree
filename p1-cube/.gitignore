@@ -1,0 +1,10 @@
+# heavy artifacts — regenerate, don't commit
+data/cache/
+data/**/*.h5
+data/**/*.lance/
+*.npz
+*.ckpt
+*.pt
+.venv/
+__pycache__/
+# keep: reports (*.md), summaries (*.json), logs (*.log), figures (*.png)

@@ -1,4 +1,5 @@
 _target_: jepa.JEPA
+encoder_gradient_checkpointing: false
 
 encoder:
   _target_: stable_pretraining.backbone.utils.vit_hf
@@ -7,6 +8,7 @@ encoder:
   image_size: ${img_size}
   pretrained: false
   use_mask_token: false
+  _attn_implementation: sdpa
 
 predictor:
   _target_: module.ARPredictor

@@ -1,0 +1,7 @@
+{"event": "start", "device": "cuda", "seed": 2026, "max_epochs": 500, "patience": 50, "batch_size": 512, "lr": 0.001, "weight_decay": 0.0001}
+{"event": "epoch", "epoch": 1, "train_normalized_mse": 0.296671986579895, "val_normalized_mse": 0.343732625246048}
+{"event": "epoch", "epoch": 10, "train_normalized_mse": 0.13567566871643066, "val_normalized_mse": 0.3514096736907959}
+{"event": "epoch", "epoch": 20, "train_normalized_mse": 0.0952581912279129, "val_normalized_mse": 0.3721674382686615}
+{"event": "epoch", "epoch": 30, "train_normalized_mse": 0.07936932146549225, "val_normalized_mse": 0.376339316368103}
+{"event": "epoch", "epoch": 40, "train_normalized_mse": 0.07163993269205093, "val_normalized_mse": 0.3827766180038452}
+{"event": "epoch", "epoch": 50, "train_normalized_mse": 0.06626997888088226, "val_normalized_mse": 0.3853093087673187}

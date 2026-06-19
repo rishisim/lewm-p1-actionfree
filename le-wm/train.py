@@ -7,6 +7,8 @@ import lightning as pl
 import stable_pretraining as spt
 import stable_worldmodel as swm
 import torch
+from lightning.pytorch.callbacks import ModelCheckpoint
+from lightning.pytorch.loggers import CSVLogger
 from lightning.pytorch.loggers import WandbLogger
 from omegaconf import OmegaConf, open_dict
 
@@ -144,6 +146,8 @@ def run(cfg):
     if cfg.wandb.enabled:
         logger = WandbLogger(**cfg.wandb.config)
         logger.log_hyperparams(OmegaConf.to_container(cfg))
+    elif cfg.get("resume_csv_log_dir", None):
+        logger = CSVLogger(save_dir=str(cfg.resume_csv_log_dir), name="", version="")
 
     run_dir.mkdir(parents=True, exist_ok=True)
     with open(run_dir / "config.yaml", "w") as f:
@@ -152,10 +156,25 @@ def run(cfg):
     object_dump_callback = SaveCkptCallback(
         run_name=cfg.output_model_name, cfg=cfg.model, epoch_interval=1,
     )
+    callbacks = [object_dump_callback]
+    resume_fit_ckpt = cfg.get("resume_fit_ckpt_path", None)
+    if resume_fit_ckpt:
+        resume_ckpt_dir = Path(
+            cfg.get("resume_checkpoint_dir", run_dir / "resume_lightning_checkpoints")
+        )
+        resume_ckpt_dir.mkdir(parents=True, exist_ok=True)
+        callbacks.append(
+            ModelCheckpoint(
+                dirpath=resume_ckpt_dir,
+                every_n_epochs=1,
+                save_last=True,
+                save_top_k=-1,
+            )
+        )
 
     trainer = pl.Trainer(
         **cfg.trainer,
-        callbacks=[object_dump_callback],
+        callbacks=callbacks,
         num_sanity_val_steps=1,
         logger=logger,
         enable_checkpointing=True,
@@ -173,6 +192,10 @@ def run(cfg):
     if ckpt:
         load_model_weights(world_model.model, ckpt)
         trainer.validate(world_model, val)
+        return
+
+    if resume_fit_ckpt:
+        trainer.fit(world_model, datamodule=data_module, ckpt_path=str(resume_fit_ckpt))
         return
 
     manager()

@@ -1,0 +1,34 @@
+2026-06-18T05:02:33+00:00 overnight guard started
+2026-06-18T05:02:33+00:00 waiting for Arm A to finish without interrupting it
+2026-06-18T05:02:37+00:00 arm_a: weights_epoch_54.pt observed; train_processes=73; approx epochs remaining=46
+2026-06-18T05:12:45+00:00 arm_a: weights_epoch_57.pt observed; train_processes=73; approx epochs remaining=43
+2026-06-18T05:22:52+00:00 arm_a: weights_epoch_60.pt observed; train_processes=73; approx epochs remaining=40
+2026-06-18T05:32:59+00:00 arm_a: weights_epoch_63.pt observed; train_processes=73; approx epochs remaining=37
+2026-06-18T05:43:07+00:00 arm_a: weights_epoch_66.pt observed; train_processes=73; approx epochs remaining=34
+2026-06-18T05:53:14+00:00 arm_a: weights_epoch_69.pt observed; train_processes=73; approx epochs remaining=31
+2026-06-18T06:03:21+00:00 arm_a: weights_epoch_72.pt observed; train_processes=73; approx epochs remaining=28
+2026-06-18T06:13:28+00:00 arm_a: weights_epoch_74.pt observed; train_processes=73; approx epochs remaining=26
+2026-06-18T06:23:36+00:00 arm_a: weights_epoch_77.pt observed; train_processes=73; approx epochs remaining=23
+2026-06-18T06:33:43+00:00 arm_a: weights_epoch_80.pt observed; train_processes=73; approx epochs remaining=20
+2026-06-18T06:43:50+00:00 arm_a: weights_epoch_83.pt observed; train_processes=73; approx epochs remaining=17
+2026-06-18T06:53:59+00:00 arm_a: weights_epoch_86.pt observed; train_processes=73; approx epochs remaining=14
+2026-06-18T07:04:07+00:00 arm_a: weights_epoch_89.pt observed; train_processes=73; approx epochs remaining=11
+2026-06-18T07:14:15+00:00 arm_a: weights_epoch_92.pt observed; train_processes=73; approx epochs remaining=8
+2026-06-18T07:24:22+00:00 arm_a: weights_epoch_94.pt observed; train_processes=73; approx epochs remaining=6
+2026-06-18T07:34:29+00:00 arm_a: weights_epoch_97.pt observed; train_processes=73; approx epochs remaining=3
+2026-06-18T07:44:36+00:00 arm_a: weights_epoch_100.pt observed; train_processes=0; approx epochs remaining=0
+2026-06-18T07:44:38+00:00 arm_a: final weights exist and trainer process has exited
+2026-06-18T07:44:38+00:00 arm_a: running post step 1/3
+2026-06-18T07:44:41+00:00 plateau: fit_pred_loss=True, fit_sigreg_loss=True, fit_sigreg_at_floor=False, validate_pred_loss=False, validate_sigreg_loss=False
+2026-06-18T07:44:41+00:00 arm_a: running post step 2/3
+2026-06-18T07:45:24+00:00 wrote /workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_encoder_transitions_summary.json
+2026-06-18T07:45:24+00:00 arm_a: running post step 3/3
+2026-06-18T07:45:38+00:00 test normalized MSE: baseline=0.981831, readout=0.302609, relative_improvement=69.2%, dims_improved=4/5
+2026-06-18T07:45:41+00:00 arm_a: remote bundle staged at /workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/vast_backups/arm_a_20260618T074538Z
+2026-06-18T07:45:41+00:00 rsync attempt 1: /workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/vast_backups/arm_a_20260618T074538Z -> /Users/rishisim/Documents/research/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/vast_8xh100_guard/arm_a_20260618T074538Z
+2026-06-18T07:46:39+00:00 remote manifest verification passed for arm_a_20260618T074538Z
+2026-06-18T07:46:39+00:00 updated README: /Users/rishisim/Documents/research/lewm-p1-inversedynamics/p1-cube/gap_test/README.md
+2026-06-18T07:46:39+00:00 local manifest verification passed for arm_a_20260618T074538Z
+2026-06-18T07:46:39+00:00 Arm A verified backup: /Users/rishisim/Documents/research/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/vast_8xh100_guard/arm_a_20260618T074538Z
+2026-06-18T07:46:39+00:00 Arm B decision: False (Arm A fit curves did not clearly plateau with SIGReg at floor)
+2026-06-18T07:46:40+00:00 Vast stop response status=200 body={"success": true}

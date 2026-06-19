@@ -1,0 +1,1902 @@
+{
+  "created_at_utc": "2026-06-18T07:45:37.767420+00:00",
+  "data_path": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_encoder_transitions.npz",
+  "source_summary_path": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_encoder_transitions_summary.json",
+  "output_dir": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned",
+  "dataset": {
+    "latent_dim": 192,
+    "action_dim": 5,
+    "action_names": [
+      "action_0",
+      "action_1",
+      "action_2",
+      "action_3",
+      "action_4"
+    ],
+    "transitions": 100000,
+    "splits": {
+      "train": {
+        "transitions": 70000,
+        "episodes": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          22,
+          25,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          35,
+          37,
+          38,
+          39,
+          41,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          51,
+          52,
+          55,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          64,
+          67,
+          68,
+          69,
+          70,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          87,
+          88,
+          89,
+          91,
+          94,
+          96,
+          97,
+          98
+        ]
+      },
+      "val": {
+        "transitions": 15000,
+        "episodes": [
+          0,
+          20,
+          21,
+          24,
+          27,
+          36,
+          50,
+          53,
+          54,
+          56,
+          65,
+          66,
+          86,
+          90,
+          99
+        ]
+      },
+      "test": {
+        "transitions": 15000,
+        "episodes": [
+          4,
+          13,
+          23,
+          26,
+          34,
+          40,
+          42,
+          49,
+          63,
+          71,
+          78,
+          79,
+          92,
+          93,
+          95
+        ]
+      }
+    },
+    "encoder": {
+      "model": "Cube LeWM Arm A action-conditioned encoder",
+      "encoder_only_path": "encoder CLS token -> projector; no action_encoder or predictor",
+      "img_size": 224,
+      "batch_size": 512,
+      "device": "cuda"
+    }
+  },
+  "readout_choice": {
+    "features": "[z_t, z_{t+1}, z_{t+1}-z_t]",
+    "architecture": "MLP([z_t, z_{t+1}, z_{t+1}-z_t] -> 256 GELU -> 128 GELU -> action)",
+    "loss": "MSE on train-standardized action targets",
+    "optimizer": "AdamW(lr=0.001, weight_decay=0.0001)",
+    "normalization": "Inputs and action targets are standardized with train-split statistics. Reported normalized MSE divides each action-dimension MSE by train action variance."
+  },
+  "train_info": {
+    "architecture": "MLP([z_t, z_{t+1}, z_{t+1}-z_t] -> 256 GELU -> 128 GELU -> action)",
+    "loss": "MSE on train-standardized action targets",
+    "optimizer": "AdamW",
+    "seed": 2026,
+    "device": "cuda",
+    "max_epochs": 500,
+    "patience": 50,
+    "batch_size": 512,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "min_delta": 1e-05,
+    "best_epoch": 4,
+    "stopped_epoch": 54,
+    "best_val_train_variance_normalized_mse": 0.32961902022361755,
+    "elapsed_seconds": 5.5650021862238646,
+    "history": [
+      {
+        "epoch": 1,
+        "train_normalized_mse": 0.296671986579895,
+        "val_normalized_mse": 0.343732625246048
+      },
+      {
+        "epoch": 2,
+        "train_normalized_mse": 0.2631112039089203,
+        "val_normalized_mse": 0.33296579122543335
+      },
+      {
+        "epoch": 3,
+        "train_normalized_mse": 0.2385226935148239,
+        "val_normalized_mse": 0.33025801181793213
+      },
+      {
+        "epoch": 4,
+        "train_normalized_mse": 0.21645541489124298,
+        "val_normalized_mse": 0.32961902022361755
+      },
+      {
+        "epoch": 5,
+        "train_normalized_mse": 0.1979224979877472,
+        "val_normalized_mse": 0.3307547867298126
+      },
+      {
+        "epoch": 6,
+        "train_normalized_mse": 0.18115971982479095,
+        "val_normalized_mse": 0.3338980972766876
+      },
+      {
+        "epoch": 7,
+        "train_normalized_mse": 0.16423767805099487,
+        "val_normalized_mse": 0.3400331735610962
+      },
+      {
+        "epoch": 8,
+        "train_normalized_mse": 0.1545410454273224,
+        "val_normalized_mse": 0.3443823456764221
+      },
+      {
+        "epoch": 9,
+        "train_normalized_mse": 0.14437569677829742,
+        "val_normalized_mse": 0.35328343510627747
+      },
+      {
+        "epoch": 10,
+        "train_normalized_mse": 0.13567566871643066,
+        "val_normalized_mse": 0.3514096736907959
+      },
+      {
+        "epoch": 11,
+        "train_normalized_mse": 0.12769383192062378,
+        "val_normalized_mse": 0.3569645881652832
+      },
+      {
+        "epoch": 12,
+        "train_normalized_mse": 0.12232102453708649,
+        "val_normalized_mse": 0.3578850030899048
+      },
+      {
+        "epoch": 13,
+        "train_normalized_mse": 0.11709606647491455,
+        "val_normalized_mse": 0.3621087074279785
+      },
+      {
+        "epoch": 14,
+        "train_normalized_mse": 0.11103687435388565,
+        "val_normalized_mse": 0.3643541932106018
+      },
+      {
+        "epoch": 15,
+        "train_normalized_mse": 0.10848705470561981,
+        "val_normalized_mse": 0.3679799437522888
+      },
+      {
+        "epoch": 16,
+        "train_normalized_mse": 0.10478637367486954,
+        "val_normalized_mse": 0.366152286529541
+      },
+      {
+        "epoch": 17,
+        "train_normalized_mse": 0.10251212120056152,
+        "val_normalized_mse": 0.3692670166492462
+      },
+      {
+        "epoch": 18,
+        "train_normalized_mse": 0.10114093869924545,
+        "val_normalized_mse": 0.37026917934417725
+      },
+      {
+        "epoch": 19,
+        "train_normalized_mse": 0.09681620448827744,
+        "val_normalized_mse": 0.3707902729511261
+      },
+      {
+        "epoch": 20,
+        "train_normalized_mse": 0.0952581912279129,
+        "val_normalized_mse": 0.3721674382686615
+      },
+      {
+        "epoch": 21,
+        "train_normalized_mse": 0.09208468347787857,
+        "val_normalized_mse": 0.3706330955028534
+      },
+      {
+        "epoch": 22,
+        "train_normalized_mse": 0.08974801003932953,
+        "val_normalized_mse": 0.37827301025390625
+      },
+      {
+        "epoch": 23,
+        "train_normalized_mse": 0.08913358300924301,
+        "val_normalized_mse": 0.3732282519340515
+      },
+      {
+        "epoch": 24,
+        "train_normalized_mse": 0.0855967253446579,
+        "val_normalized_mse": 0.378864049911499
+      },
+      {
+        "epoch": 25,
+        "train_normalized_mse": 0.08418990671634674,
+        "val_normalized_mse": 0.3727899491786957
+      },
+      {
+        "epoch": 26,
+        "train_normalized_mse": 0.08606386184692383,
+        "val_normalized_mse": 0.3798375129699707
+      },
+      {
+        "epoch": 27,
+        "train_normalized_mse": 0.08219923079013824,
+        "val_normalized_mse": 0.3791217803955078
+      },
+      {
+        "epoch": 28,
+        "train_normalized_mse": 0.08446194231510162,
+        "val_normalized_mse": 0.37765681743621826
+      },
+      {
+        "epoch": 29,
+        "train_normalized_mse": 0.08269956707954407,
+        "val_normalized_mse": 0.3782033324241638
+      },
+      {
+        "epoch": 30,
+        "train_normalized_mse": 0.07936932146549225,
+        "val_normalized_mse": 0.376339316368103
+      },
+      {
+        "epoch": 31,
+        "train_normalized_mse": 0.07966797053813934,
+        "val_normalized_mse": 0.3855772912502289
+      },
+      {
+        "epoch": 32,
+        "train_normalized_mse": 0.07870020717382431,
+        "val_normalized_mse": 0.3836654722690582
+      },
+      {
+        "epoch": 33,
+        "train_normalized_mse": 0.07945719361305237,
+        "val_normalized_mse": 0.38005200028419495
+      },
+      {
+        "epoch": 34,
+        "train_normalized_mse": 0.07719927281141281,
+        "val_normalized_mse": 0.38051703572273254
+      },
+      {
+        "epoch": 35,
+        "train_normalized_mse": 0.0763292908668518,
+        "val_normalized_mse": 0.3832360506057739
+      },
+      {
+        "epoch": 36,
+        "train_normalized_mse": 0.0741933062672615,
+        "val_normalized_mse": 0.385096937417984
+      },
+      {
+        "epoch": 37,
+        "train_normalized_mse": 0.07399529218673706,
+        "val_normalized_mse": 0.38342219591140747
+      },
+      {
+        "epoch": 38,
+        "train_normalized_mse": 0.07629398256540298,
+        "val_normalized_mse": 0.3833448588848114
+      },
+      {
+        "epoch": 39,
+        "train_normalized_mse": 0.07286626100540161,
+        "val_normalized_mse": 0.3856167793273926
+      },
+      {
+        "epoch": 40,
+        "train_normalized_mse": 0.07163993269205093,
+        "val_normalized_mse": 0.3827766180038452
+      },
+      {
+        "epoch": 41,
+        "train_normalized_mse": 0.07365933805704117,
+        "val_normalized_mse": 0.38460418581962585
+      },
+      {
+        "epoch": 42,
+        "train_normalized_mse": 0.07183431833982468,
+        "val_normalized_mse": 0.3867097795009613
+      },
+      {
+        "epoch": 43,
+        "train_normalized_mse": 0.07015442103147507,
+        "val_normalized_mse": 0.387271523475647
+      },
+      {
+        "epoch": 44,
+        "train_normalized_mse": 0.07042398303747177,
+        "val_normalized_mse": 0.38761743903160095
+      },
+      {
+        "epoch": 45,
+        "train_normalized_mse": 0.06900588423013687,
+        "val_normalized_mse": 0.3871394395828247
+      },
+      {
+        "epoch": 46,
+        "train_normalized_mse": 0.06913682073354721,
+        "val_normalized_mse": 0.3870629668235779
+      },
+      {
+        "epoch": 47,
+        "train_normalized_mse": 0.06756455451250076,
+        "val_normalized_mse": 0.38608652353286743
+      },
+      {
+        "epoch": 48,
+        "train_normalized_mse": 0.06893892586231232,
+        "val_normalized_mse": 0.3885650634765625
+      },
+      {
+        "epoch": 49,
+        "train_normalized_mse": 0.06748319417238235,
+        "val_normalized_mse": 0.3867571949958801
+      },
+      {
+        "epoch": 50,
+        "train_normalized_mse": 0.06626997888088226,
+        "val_normalized_mse": 0.3853093087673187
+      },
+      {
+        "epoch": 51,
+        "train_normalized_mse": 0.06604495644569397,
+        "val_normalized_mse": 0.38801446557044983
+      },
+      {
+        "epoch": 52,
+        "train_normalized_mse": 0.06644167751073837,
+        "val_normalized_mse": 0.3902115225791931
+      },
+      {
+        "epoch": 53,
+        "train_normalized_mse": 0.06494644284248352,
+        "val_normalized_mse": 0.38628432154655457
+      },
+      {
+        "epoch": 54,
+        "train_normalized_mse": 0.06433653086423874,
+        "val_normalized_mse": 0.3842458724975586
+      }
+    ]
+  },
+  "baseline": {
+    "name": "mean_action_baseline",
+    "definition": "Predict the constant train-split mean action for every transition.",
+    "train_mean_action": [
+      0.02003750391304493,
+      -0.007813174277544022,
+      0.05488991737365723,
+      -0.002811848884448409,
+      0.17263907194137573
+    ],
+    "train_action_variance": [
+      0.08988410979509354,
+      0.18225829303264618,
+      0.41783931851387024,
+      0.14873798191547394,
+      0.0643908679485321
+    ]
+  },
+  "metrics": {
+    "train": {
+      "mean_action_baseline": {
+        "mse": 0.1806221306324005,
+        "rmse": 0.42499662426000573,
+        "mae": 0.30793413519859314,
+        "train_variance_normalized_mse": 1.000000238418579,
+        "r2_mean": -1.668930025289228e-07,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.08988413214683533,
+            "rmse": 0.2998068332672119,
+            "mae": 0.21039699018001556,
+            "train_variance_normalized_mse": 1.000000238418579,
+            "r2": -2.384185791015625e-07,
+            "target_split_variance": 0.08988410979509354,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.18225829303264618,
+            "rmse": 0.4269171953201294,
+            "mae": 0.27900657057762146,
+            "train_variance_normalized_mse": 1.0,
+            "r2": 0.0,
+            "target_split_variance": 0.18225829303264618,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.4178394377231598,
+            "rmse": 0.6464049816131592,
+            "mae": 0.5651667714118958,
+            "train_variance_normalized_mse": 1.000000238418579,
+            "r2": -2.384185791015625e-07,
+            "target_split_variance": 0.41783931851387024,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.14873798191547394,
+            "rmse": 0.385665625333786,
+            "mae": 0.25271928310394287,
+            "train_variance_normalized_mse": 1.0,
+            "r2": 0.0,
+            "target_split_variance": 0.14873798191547394,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.0643908903002739,
+            "rmse": 0.2537536025047302,
+            "mae": 0.23241421580314636,
+            "train_variance_normalized_mse": 1.0000003576278687,
+            "r2": -3.5762786865234375e-07,
+            "target_split_variance": 0.0643908679485321,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.18063228130340575,
+          "min_mse": 0.15562424063682556,
+          "max_mse": 0.2017214000225067,
+          "episodes": [
+            {
+              "episode_id": 1,
+              "transitions": 1000,
+              "mse": 0.1941033899784088
+            },
+            {
+              "episode_id": 2,
+              "transitions": 1000,
+              "mse": 0.19133874773979187
+            },
+            {
+              "episode_id": 3,
+              "transitions": 1000,
+              "mse": 0.18440015614032745
+            },
+            {
+              "episode_id": 5,
+              "transitions": 1000,
+              "mse": 0.17253640294075012
+            },
+            {
+              "episode_id": 6,
+              "transitions": 1000,
+              "mse": 0.1752282679080963
+            },
+            {
+              "episode_id": 7,
+              "transitions": 1000,
+              "mse": 0.16863363981246948
+            },
+            {
+              "episode_id": 8,
+              "transitions": 1000,
+              "mse": 0.18764466047286987
+            },
+            {
+              "episode_id": 9,
+              "transitions": 1000,
+              "mse": 0.19369466602802277
+            },
+            {
+              "episode_id": 10,
+              "transitions": 1000,
+              "mse": 0.16704876720905304
+            },
+            {
+              "episode_id": 11,
+              "transitions": 1000,
+              "mse": 0.18654339015483856
+            },
+            {
+              "episode_id": 12,
+              "transitions": 1000,
+              "mse": 0.18134598433971405
+            },
+            {
+              "episode_id": 14,
+              "transitions": 1000,
+              "mse": 0.18397095799446106
+            },
+            {
+              "episode_id": 15,
+              "transitions": 1000,
+              "mse": 0.1753491759300232
+            },
+            {
+              "episode_id": 16,
+              "transitions": 1000,
+              "mse": 0.1705142855644226
+            },
+            {
+              "episode_id": 17,
+              "transitions": 1000,
+              "mse": 0.19048656523227692
+            },
+            {
+              "episode_id": 18,
+              "transitions": 1000,
+              "mse": 0.16801199316978455
+            },
+            {
+              "episode_id": 19,
+              "transitions": 1000,
+              "mse": 0.19607263803482056
+            },
+            {
+              "episode_id": 22,
+              "transitions": 1000,
+              "mse": 0.16979943215847015
+            },
+            {
+              "episode_id": 25,
+              "transitions": 1000,
+              "mse": 0.17213919758796692
+            },
+            {
+              "episode_id": 28,
+              "transitions": 1000,
+              "mse": 0.1961519718170166
+            },
+            {
+              "episode_id": 29,
+              "transitions": 1000,
+              "mse": 0.1997421383857727
+            },
+            {
+              "episode_id": 30,
+              "transitions": 1000,
+              "mse": 0.16666147112846375
+            },
+            {
+              "episode_id": 31,
+              "transitions": 1000,
+              "mse": 0.18344028294086456
+            },
+            {
+              "episode_id": 32,
+              "transitions": 1000,
+              "mse": 0.17288407683372498
+            },
+            {
+              "episode_id": 33,
+              "transitions": 1000,
+              "mse": 0.1911221295595169
+            },
+            {
+              "episode_id": 35,
+              "transitions": 1000,
+              "mse": 0.20015448331832886
+            },
+            {
+              "episode_id": 37,
+              "transitions": 1000,
+              "mse": 0.1757352352142334
+            },
+            {
+              "episode_id": 38,
+              "transitions": 1000,
+              "mse": 0.17568011581897736
+            },
+            {
+              "episode_id": 39,
+              "transitions": 1000,
+              "mse": 0.18469925224781036
+            },
+            {
+              "episode_id": 41,
+              "transitions": 1000,
+              "mse": 0.18919622898101807
+            },
+            {
+              "episode_id": 43,
+              "transitions": 1000,
+              "mse": 0.17687317728996277
+            },
+            {
+              "episode_id": 44,
+              "transitions": 1000,
+              "mse": 0.18767361342906952
+            },
+            {
+              "episode_id": 45,
+              "transitions": 1000,
+              "mse": 0.15562424063682556
+            },
+            {
+              "episode_id": 46,
+              "transitions": 1000,
+              "mse": 0.16516532003879547
+            },
+            {
+              "episode_id": 47,
+              "transitions": 1000,
+              "mse": 0.18775467574596405
+            },
+            {
+              "episode_id": 48,
+              "transitions": 1000,
+              "mse": 0.20124872028827667
+            },
+            {
+              "episode_id": 51,
+              "transitions": 1000,
+              "mse": 0.17324289679527283
+            },
+            {
+              "episode_id": 52,
+              "transitions": 1000,
+              "mse": 0.1739986538887024
+            },
+            {
+              "episode_id": 55,
+              "transitions": 1000,
+              "mse": 0.18719880282878876
+            },
+            {
+              "episode_id": 57,
+              "transitions": 1000,
+              "mse": 0.18294291198253632
+            },
+            {
+              "episode_id": 58,
+              "transitions": 1000,
+              "mse": 0.17037609219551086
+            },
+            {
+              "episode_id": 59,
+              "transitions": 1000,
+              "mse": 0.18937452137470245
+            },
+            {
+              "episode_id": 60,
+              "transitions": 1000,
+              "mse": 0.18222907185554504
+            },
+            {
+              "episode_id": 61,
+              "transitions": 1000,
+              "mse": 0.1729305386543274
+            },
+            {
+              "episode_id": 62,
+              "transitions": 1000,
+              "mse": 0.17052774131298065
+            },
+            {
+              "episode_id": 64,
+              "transitions": 1000,
+              "mse": 0.18162640929222107
+            },
+            {
+              "episode_id": 67,
+              "transitions": 1000,
+              "mse": 0.16986899077892303
+            },
+            {
+              "episode_id": 68,
+              "transitions": 1000,
+              "mse": 0.17470675706863403
+            },
+            {
+              "episode_id": 69,
+              "transitions": 1000,
+              "mse": 0.17016687989234924
+            },
+            {
+              "episode_id": 70,
+              "transitions": 1000,
+              "mse": 0.19246897101402283
+            },
+            {
+              "episode_id": 72,
+              "transitions": 1000,
+              "mse": 0.19318729639053345
+            },
+            {
+              "episode_id": 73,
+              "transitions": 1000,
+              "mse": 0.18117795884609222
+            },
+            {
+              "episode_id": 74,
+              "transitions": 1000,
+              "mse": 0.1836063414812088
+            },
+            {
+              "episode_id": 75,
+              "transitions": 1000,
+              "mse": 0.18534702062606812
+            },
+            {
+              "episode_id": 76,
+              "transitions": 1000,
+              "mse": 0.17491158843040466
+            },
+            {
+              "episode_id": 77,
+              "transitions": 1000,
+              "mse": 0.2017214000225067
+            },
+            {
+              "episode_id": 80,
+              "transitions": 1000,
+              "mse": 0.17829345166683197
+            },
+            {
+              "episode_id": 81,
+              "transitions": 1000,
+              "mse": 0.16918131709098816
+            },
+            {
+              "episode_id": 82,
+              "transitions": 1000,
+              "mse": 0.186424121260643
+            },
+            {
+              "episode_id": 83,
+              "transitions": 1000,
+              "mse": 0.18782705068588257
+            },
+            {
+              "episode_id": 84,
+              "transitions": 1000,
+              "mse": 0.18333834409713745
+            },
+            {
+              "episode_id": 85,
+              "transitions": 1000,
+              "mse": 0.16527390480041504
+            },
+            {
+              "episode_id": 87,
+              "transitions": 1000,
+              "mse": 0.17965975403785706
+            },
+            {
+              "episode_id": 88,
+              "transitions": 1000,
+              "mse": 0.18762777745723724
+            },
+            {
+              "episode_id": 89,
+              "transitions": 1000,
+              "mse": 0.1927124261856079
+            },
+            {
+              "episode_id": 91,
+              "transitions": 1000,
+              "mse": 0.1717195063829422
+            },
+            {
+              "episode_id": 94,
+              "transitions": 1000,
+              "mse": 0.1767924427986145
+            },
+            {
+              "episode_id": 96,
+              "transitions": 1000,
+              "mse": 0.16916409134864807
+            },
+            {
+              "episode_id": 97,
+              "transitions": 1000,
+              "mse": 0.16916491091251373
+            },
+            {
+              "episode_id": 98,
+              "transitions": 1000,
+              "mse": 0.17680029571056366
+            }
+          ]
+        }
+      },
+      "readout_mlp": {
+        "mse": 0.029902536422014236,
+        "rmse": 0.17292349875599394,
+        "mae": 0.10906995832920074,
+        "train_variance_normalized_mse": 0.21645721793174744,
+        "r2_mean": 0.783542811870575,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.011648755520582199,
+            "rmse": 0.10792940109968185,
+            "mae": 0.08298254013061523,
+            "train_variance_normalized_mse": 0.1295974999666214,
+            "r2": 0.8704025149345398,
+            "target_split_variance": 0.08988410979509354,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.007766570895910263,
+            "rmse": 0.08812814950942993,
+            "mae": 0.0668657124042511,
+            "train_variance_normalized_mse": 0.042612992227077484,
+            "r2": 0.9573870301246643,
+            "target_split_variance": 0.18225829303264618,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.017051687464118004,
+            "rmse": 0.13058210909366608,
+            "mae": 0.09968312829732895,
+            "train_variance_normalized_mse": 0.04080919921398163,
+            "r2": 0.9591907858848572,
+            "target_split_variance": 0.41783931851387024,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.10064243525266647,
+            "rmse": 0.317241907119751,
+            "mae": 0.21208669245243073,
+            "train_variance_normalized_mse": 0.6766424775123596,
+            "r2": 0.3233575224876404,
+            "target_split_variance": 0.14873798191547394,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.012403222732245922,
+            "rmse": 0.11136975884437561,
+            "mae": 0.08372969180345535,
+            "train_variance_normalized_mse": 0.19262394309043884,
+            "r2": 0.8073760271072388,
+            "target_split_variance": 0.0643908679485321,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.02990304484431233,
+          "min_mse": 0.022549623623490334,
+          "max_mse": 0.038752149790525436,
+          "episodes": [
+            {
+              "episode_id": 1,
+              "transitions": 1000,
+              "mse": 0.03593513369560242
+            },
+            {
+              "episode_id": 2,
+              "transitions": 1000,
+              "mse": 0.03491370752453804
+            },
+            {
+              "episode_id": 3,
+              "transitions": 1000,
+              "mse": 0.029414603486657143
+            },
+            {
+              "episode_id": 5,
+              "transitions": 1000,
+              "mse": 0.029940975829958916
+            },
+            {
+              "episode_id": 6,
+              "transitions": 1000,
+              "mse": 0.030267802998423576
+            },
+            {
+              "episode_id": 7,
+              "transitions": 1000,
+              "mse": 0.029770905151963234
+            },
+            {
+              "episode_id": 8,
+              "transitions": 1000,
+              "mse": 0.0286116786301136
+            },
+            {
+              "episode_id": 9,
+              "transitions": 1000,
+              "mse": 0.03655937314033508
+            },
+            {
+              "episode_id": 10,
+              "transitions": 1000,
+              "mse": 0.028800304979085922
+            },
+            {
+              "episode_id": 11,
+              "transitions": 1000,
+              "mse": 0.03060525842010975
+            },
+            {
+              "episode_id": 12,
+              "transitions": 1000,
+              "mse": 0.02996109239757061
+            },
+            {
+              "episode_id": 14,
+              "transitions": 1000,
+              "mse": 0.027204444631934166
+            },
+            {
+              "episode_id": 15,
+              "transitions": 1000,
+              "mse": 0.022549623623490334
+            },
+            {
+              "episode_id": 16,
+              "transitions": 1000,
+              "mse": 0.03730226308107376
+            },
+            {
+              "episode_id": 17,
+              "transitions": 1000,
+              "mse": 0.035548627376556396
+            },
+            {
+              "episode_id": 18,
+              "transitions": 1000,
+              "mse": 0.030622264370322227
+            },
+            {
+              "episode_id": 19,
+              "transitions": 1000,
+              "mse": 0.027431545779109
+            },
+            {
+              "episode_id": 22,
+              "transitions": 1000,
+              "mse": 0.02896880730986595
+            },
+            {
+              "episode_id": 25,
+              "transitions": 1000,
+              "mse": 0.03162616491317749
+            },
+            {
+              "episode_id": 28,
+              "transitions": 1000,
+              "mse": 0.03465525805950165
+            },
+            {
+              "episode_id": 29,
+              "transitions": 1000,
+              "mse": 0.038752149790525436
+            },
+            {
+              "episode_id": 30,
+              "transitions": 1000,
+              "mse": 0.03163968771696091
+            },
+            {
+              "episode_id": 31,
+              "transitions": 1000,
+              "mse": 0.03364325687289238
+            },
+            {
+              "episode_id": 32,
+              "transitions": 1000,
+              "mse": 0.026372425258159637
+            },
+            {
+              "episode_id": 33,
+              "transitions": 1000,
+              "mse": 0.03203604742884636
+            },
+            {
+              "episode_id": 35,
+              "transitions": 1000,
+              "mse": 0.033478811383247375
+            },
+            {
+              "episode_id": 37,
+              "transitions": 1000,
+              "mse": 0.02766108699142933
+            },
+            {
+              "episode_id": 38,
+              "transitions": 1000,
+              "mse": 0.031656764447689056
+            },
+            {
+              "episode_id": 39,
+              "transitions": 1000,
+              "mse": 0.03386947140097618
+            },
+            {
+              "episode_id": 41,
+              "transitions": 1000,
+              "mse": 0.0287844967097044
+            },
+            {
+              "episode_id": 43,
+              "transitions": 1000,
+              "mse": 0.03152221441268921
+            },
+            {
+              "episode_id": 44,
+              "transitions": 1000,
+              "mse": 0.030001554638147354
+            },
+            {
+              "episode_id": 45,
+              "transitions": 1000,
+              "mse": 0.025203660130500793
+            },
+            {
+              "episode_id": 46,
+              "transitions": 1000,
+              "mse": 0.025764362886548042
+            },
+            {
+              "episode_id": 47,
+              "transitions": 1000,
+              "mse": 0.029475368559360504
+            },
+            {
+              "episode_id": 48,
+              "transitions": 1000,
+              "mse": 0.03423628956079483
+            },
+            {
+              "episode_id": 51,
+              "transitions": 1000,
+              "mse": 0.028369396924972534
+            },
+            {
+              "episode_id": 52,
+              "transitions": 1000,
+              "mse": 0.028265949338674545
+            },
+            {
+              "episode_id": 55,
+              "transitions": 1000,
+              "mse": 0.029626518487930298
+            },
+            {
+              "episode_id": 57,
+              "transitions": 1000,
+              "mse": 0.031073035672307014
+            },
+            {
+              "episode_id": 58,
+              "transitions": 1000,
+              "mse": 0.025592178106307983
+            },
+            {
+              "episode_id": 59,
+              "transitions": 1000,
+              "mse": 0.030533915385603905
+            },
+            {
+              "episode_id": 60,
+              "transitions": 1000,
+              "mse": 0.02655329555273056
+            },
+            {
+              "episode_id": 61,
+              "transitions": 1000,
+              "mse": 0.03047524206340313
+            },
+            {
+              "episode_id": 62,
+              "transitions": 1000,
+              "mse": 0.02682103030383587
+            },
+            {
+              "episode_id": 64,
+              "transitions": 1000,
+              "mse": 0.02979574166238308
+            },
+            {
+              "episode_id": 67,
+              "transitions": 1000,
+              "mse": 0.026055539026856422
+            },
+            {
+              "episode_id": 68,
+              "transitions": 1000,
+              "mse": 0.029803628101944923
+            },
+            {
+              "episode_id": 69,
+              "transitions": 1000,
+              "mse": 0.027736304327845573
+            },
+            {
+              "episode_id": 70,
+              "transitions": 1000,
+              "mse": 0.030467893928289413
+            },
+            {
+              "episode_id": 72,
+              "transitions": 1000,
+              "mse": 0.02628977969288826
+            },
+            {
+              "episode_id": 73,
+              "transitions": 1000,
+              "mse": 0.034828394651412964
+            },
+            {
+              "episode_id": 74,
+              "transitions": 1000,
+              "mse": 0.028120657429099083
+            },
+            {
+              "episode_id": 75,
+              "transitions": 1000,
+              "mse": 0.03172754496335983
+            },
+            {
+              "episode_id": 76,
+              "transitions": 1000,
+              "mse": 0.026286430656909943
+            },
+            {
+              "episode_id": 77,
+              "transitions": 1000,
+              "mse": 0.02775556966662407
+            },
+            {
+              "episode_id": 80,
+              "transitions": 1000,
+              "mse": 0.02683122269809246
+            },
+            {
+              "episode_id": 81,
+              "transitions": 1000,
+              "mse": 0.024922840297222137
+            },
+            {
+              "episode_id": 82,
+              "transitions": 1000,
+              "mse": 0.0281280018389225
+            },
+            {
+              "episode_id": 83,
+              "transitions": 1000,
+              "mse": 0.03196023032069206
+            },
+            {
+              "episode_id": 84,
+              "transitions": 1000,
+              "mse": 0.027131270617246628
+            },
+            {
+              "episode_id": 85,
+              "transitions": 1000,
+              "mse": 0.033017486333847046
+            },
+            {
+              "episode_id": 87,
+              "transitions": 1000,
+              "mse": 0.02701168693602085
+            },
+            {
+              "episode_id": 88,
+              "transitions": 1000,
+              "mse": 0.030563343316316605
+            },
+            {
+              "episode_id": 89,
+              "transitions": 1000,
+              "mse": 0.03224172815680504
+            },
+            {
+              "episode_id": 91,
+              "transitions": 1000,
+              "mse": 0.028542622923851013
+            },
+            {
+              "episode_id": 94,
+              "transitions": 1000,
+              "mse": 0.029422981664538383
+            },
+            {
+              "episode_id": 96,
+              "transitions": 1000,
+              "mse": 0.023328831419348717
+            },
+            {
+              "episode_id": 97,
+              "transitions": 1000,
+              "mse": 0.031155306845903397
+            },
+            {
+              "episode_id": 98,
+              "transitions": 1000,
+              "mse": 0.027990056201815605
+            }
+          ]
+        }
+      }
+    },
+    "val": {
+      "mean_action_baseline": {
+        "mse": 0.18683552742004395,
+        "rmse": 0.4322447540688539,
+        "mae": 0.31334763765335083,
+        "train_variance_normalized_mse": 1.0400984287261963,
+        "r2_mean": -0.0004817962762899697,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.09438345581293106,
+            "rmse": 0.30721890926361084,
+            "mae": 0.21395117044448853,
+            "train_variance_normalized_mse": 1.0500571727752686,
+            "r2": -0.00020396709442138672,
+            "target_split_variance": 0.09436420351266861,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.1869887262582779,
+            "rmse": 0.4324219226837158,
+            "mae": 0.28545352816581726,
+            "train_variance_normalized_mse": 1.0259546041488647,
+            "r2": -1.537799835205078e-05,
+            "target_split_variance": 0.18698585033416748,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.42353713512420654,
+            "rmse": 0.6507973074913025,
+            "mae": 0.5689350366592407,
+            "train_variance_normalized_mse": 1.0136363506317139,
+            "r2": 4.0531158447265625e-06,
+            "target_split_variance": 0.42353886365890503,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.164612278342247,
+            "rmse": 0.4057243764400482,
+            "mae": 0.26537811756134033,
+            "train_variance_normalized_mse": 1.1067265272140503,
+            "r2": -0.002194046974182129,
+            "target_split_variance": 0.1642518937587738,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.06465601921081543,
+            "rmse": 0.25427547097206116,
+            "mae": 0.23303471505641937,
+            "train_variance_normalized_mse": 1.0041178464889526,
+            "r2": 3.5762786865234375e-07,
+            "target_split_variance": 0.06465604156255722,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.1868376781543096,
+          "min_mse": 0.16680023074150085,
+          "max_mse": 0.22101858258247375,
+          "episodes": [
+            {
+              "episode_id": 0,
+              "transitions": 1000,
+              "mse": 0.16680023074150085
+            },
+            {
+              "episode_id": 20,
+              "transitions": 1000,
+              "mse": 0.1957503855228424
+            },
+            {
+              "episode_id": 21,
+              "transitions": 1000,
+              "mse": 0.1867104172706604
+            },
+            {
+              "episode_id": 24,
+              "transitions": 1000,
+              "mse": 0.19648748636245728
+            },
+            {
+              "episode_id": 27,
+              "transitions": 1000,
+              "mse": 0.17064258456230164
+            },
+            {
+              "episode_id": 36,
+              "transitions": 1000,
+              "mse": 0.19462594389915466
+            },
+            {
+              "episode_id": 50,
+              "transitions": 1000,
+              "mse": 0.17039889097213745
+            },
+            {
+              "episode_id": 53,
+              "transitions": 1000,
+              "mse": 0.18361899256706238
+            },
+            {
+              "episode_id": 54,
+              "transitions": 1000,
+              "mse": 0.22101858258247375
+            },
+            {
+              "episode_id": 56,
+              "transitions": 1000,
+              "mse": 0.19250787794589996
+            },
+            {
+              "episode_id": 65,
+              "transitions": 1000,
+              "mse": 0.18440616130828857
+            },
+            {
+              "episode_id": 66,
+              "transitions": 1000,
+              "mse": 0.17779424786567688
+            },
+            {
+              "episode_id": 86,
+              "transitions": 1000,
+              "mse": 0.18943189084529877
+            },
+            {
+              "episode_id": 90,
+              "transitions": 1000,
+              "mse": 0.17557521164417267
+            },
+            {
+              "episode_id": 99,
+              "transitions": 1000,
+              "mse": 0.1967962682247162
+            }
+          ]
+        }
+      },
+      "readout_mlp": {
+        "mse": 0.046351976692676544,
+        "rmse": 0.21529509212398815,
+        "mae": 0.1278683841228485,
+        "train_variance_normalized_mse": 0.3296276330947876,
+        "r2_mean": 0.6942805647850037,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.015157468616962433,
+            "rmse": 0.123115673661232,
+            "mae": 0.09284718334674835,
+            "train_variance_normalized_mse": 0.16863346099853516,
+            "r2": 0.8393726944923401,
+            "target_split_variance": 0.09436420351266861,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.009899666532874107,
+            "rmse": 0.09949706494808197,
+            "mae": 0.07343773543834686,
+            "train_variance_normalized_mse": 0.0543166846036911,
+            "r2": 0.9470565915107727,
+            "target_split_variance": 0.18698585033416748,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.02127125672996044,
+            "rmse": 0.14584669470787048,
+            "mae": 0.11019507795572281,
+            "train_variance_normalized_mse": 0.050907742232084274,
+            "r2": 0.9497773051261902,
+            "target_split_variance": 0.42353886365890503,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.17094500362873077,
+            "rmse": 0.41345494985580444,
+            "mae": 0.2726455628871918,
+            "train_variance_normalized_mse": 1.1493029594421387,
+            "r2": -0.04074907302856445,
+            "target_split_variance": 0.1642518937587738,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.014486485160887241,
+            "rmse": 0.12035981565713882,
+            "mae": 0.09021569043397903,
+            "train_variance_normalized_mse": 0.22497732937335968,
+            "r2": 0.7759453654289246,
+            "target_split_variance": 0.06465604156255722,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.046351998051007585,
+          "min_mse": 0.03331812843680382,
+          "max_mse": 0.08192518353462219,
+          "episodes": [
+            {
+              "episode_id": 0,
+              "transitions": 1000,
+              "mse": 0.03736749291419983
+            },
+            {
+              "episode_id": 20,
+              "transitions": 1000,
+              "mse": 0.04018234461545944
+            },
+            {
+              "episode_id": 21,
+              "transitions": 1000,
+              "mse": 0.03331812843680382
+            },
+            {
+              "episode_id": 24,
+              "transitions": 1000,
+              "mse": 0.048458050936460495
+            },
+            {
+              "episode_id": 27,
+              "transitions": 1000,
+              "mse": 0.04559452831745148
+            },
+            {
+              "episode_id": 36,
+              "transitions": 1000,
+              "mse": 0.04612721875309944
+            },
+            {
+              "episode_id": 50,
+              "transitions": 1000,
+              "mse": 0.05123457312583923
+            },
+            {
+              "episode_id": 53,
+              "transitions": 1000,
+              "mse": 0.040113113820552826
+            },
+            {
+              "episode_id": 54,
+              "transitions": 1000,
+              "mse": 0.08192518353462219
+            },
+            {
+              "episode_id": 56,
+              "transitions": 1000,
+              "mse": 0.05454576388001442
+            },
+            {
+              "episode_id": 65,
+              "transitions": 1000,
+              "mse": 0.047494396567344666
+            },
+            {
+              "episode_id": 66,
+              "transitions": 1000,
+              "mse": 0.0410325825214386
+            },
+            {
+              "episode_id": 86,
+              "transitions": 1000,
+              "mse": 0.04595223069190979
+            },
+            {
+              "episode_id": 90,
+              "transitions": 1000,
+              "mse": 0.0411209762096405
+            },
+            {
+              "episode_id": 99,
+              "transitions": 1000,
+              "mse": 0.0408133864402771
+            }
+          ]
+        }
+      }
+    },
+    "test": {
+      "mean_action_baseline": {
+        "mse": 0.17685337364673615,
+        "rmse": 0.42053938418028836,
+        "mae": 0.30472978949546814,
+        "train_variance_normalized_mse": 0.9818307161331177,
+        "r2_mean": -5.340576171875e-05,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.08644284307956696,
+            "rmse": 0.294011652469635,
+            "mae": 0.20752328634262085,
+            "train_variance_normalized_mse": 0.9617143869400024,
+            "r2": -0.0001760721206665039,
+            "target_split_variance": 0.08642762154340744,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.1808738261461258,
+            "rmse": 0.42529264092445374,
+            "mae": 0.277207612991333,
+            "train_variance_normalized_mse": 0.9924038052558899,
+            "r2": -6.759166717529297e-05,
+            "target_split_variance": 0.18086160719394684,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.40967148542404175,
+            "rmse": 0.6400558352470398,
+            "mae": 0.5584576725959778,
+            "train_variance_normalized_mse": 0.9804522395133972,
+            "r2": 2.396106719970703e-05,
+            "target_split_variance": 0.4096812903881073,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.1413078010082245,
+            "rmse": 0.37590929865837097,
+            "mae": 0.2456698715686798,
+            "train_variance_normalized_mse": 0.9500451683998108,
+            "r2": -1.2040138244628906e-05,
+            "target_split_variance": 0.1413061022758484,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.06597086787223816,
+            "rmse": 0.25684794783592224,
+            "mae": 0.23480048775672913,
+            "train_variance_normalized_mse": 1.0245376825332642,
+            "r2": -3.528594970703125e-05,
+            "target_split_variance": 0.06596854329109192,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.17685520549615225,
+          "min_mse": 0.15900695323944092,
+          "max_mse": 0.19234901666641235,
+          "episodes": [
+            {
+              "episode_id": 4,
+              "transitions": 1000,
+              "mse": 0.19234901666641235
+            },
+            {
+              "episode_id": 13,
+              "transitions": 1000,
+              "mse": 0.17429116368293762
+            },
+            {
+              "episode_id": 23,
+              "transitions": 1000,
+              "mse": 0.15900695323944092
+            },
+            {
+              "episode_id": 26,
+              "transitions": 1000,
+              "mse": 0.17071497440338135
+            },
+            {
+              "episode_id": 34,
+              "transitions": 1000,
+              "mse": 0.1810319572687149
+            },
+            {
+              "episode_id": 40,
+              "transitions": 1000,
+              "mse": 0.1852126270532608
+            },
+            {
+              "episode_id": 42,
+              "transitions": 1000,
+              "mse": 0.1783885806798935
+            },
+            {
+              "episode_id": 49,
+              "transitions": 1000,
+              "mse": 0.1861625462770462
+            },
+            {
+              "episode_id": 63,
+              "transitions": 1000,
+              "mse": 0.17541326582431793
+            },
+            {
+              "episode_id": 71,
+              "transitions": 1000,
+              "mse": 0.1761464923620224
+            },
+            {
+              "episode_id": 78,
+              "transitions": 1000,
+              "mse": 0.17621396481990814
+            },
+            {
+              "episode_id": 79,
+              "transitions": 1000,
+              "mse": 0.18493296205997467
+            },
+            {
+              "episode_id": 92,
+              "transitions": 1000,
+              "mse": 0.16912829875946045
+            },
+            {
+              "episode_id": 93,
+              "transitions": 1000,
+              "mse": 0.17027097940444946
+            },
+            {
+              "episode_id": 95,
+              "transitions": 1000,
+              "mse": 0.17356429994106293
+            }
+          ]
+        }
+      },
+      "readout_mlp": {
+        "mse": 0.04231629520654678,
+        "rmse": 0.20570924920028943,
+        "mae": 0.12350591272115707,
+        "train_variance_normalized_mse": 0.302609384059906,
+        "r2_mean": 0.6861356496810913,
+        "per_dim": [
+          {
+            "name": "action_0",
+            "mse": 0.01410395186394453,
+            "rmse": 0.11876005679368973,
+            "mae": 0.08970390260219574,
+            "train_variance_normalized_mse": 0.15691262483596802,
+            "r2": 0.8368120193481445,
+            "target_split_variance": 0.08642762154340744,
+            "target_train_variance": 0.08988410979509354
+          },
+          {
+            "name": "action_1",
+            "mse": 0.009664308279752731,
+            "rmse": 0.09830721467733383,
+            "mae": 0.0724438950419426,
+            "train_variance_normalized_mse": 0.053025342524051666,
+            "r2": 0.9465651512145996,
+            "target_split_variance": 0.18086160719394684,
+            "target_train_variance": 0.18225829303264618
+          },
+          {
+            "name": "action_2",
+            "mse": 0.02037428319454193,
+            "rmse": 0.14273850619792938,
+            "mae": 0.10863123834133148,
+            "train_variance_normalized_mse": 0.048761047422885895,
+            "r2": 0.9502679705619812,
+            "target_split_variance": 0.4096812903881073,
+            "target_train_variance": 0.41783931851387024
+          },
+          {
+            "name": "action_3",
+            "mse": 0.15283484756946564,
+            "rmse": 0.39094096422195435,
+            "mae": 0.25641533732414246,
+            "train_variance_normalized_mse": 1.0275441408157349,
+            "r2": -0.08158707618713379,
+            "target_split_variance": 0.1413061022758484,
+            "target_train_variance": 0.14873798191547394
+          },
+          {
+            "name": "action_4",
+            "mse": 0.014604095369577408,
+            "rmse": 0.12084740400314331,
+            "mae": 0.09033536911010742,
+            "train_variance_normalized_mse": 0.22680382430553436,
+            "r2": 0.7786203026771545,
+            "target_split_variance": 0.06596854329109192,
+            "target_train_variance": 0.0643908679485321
+          }
+        ],
+        "per_trajectory": {
+          "mean_mse": 0.042316486189762754,
+          "min_mse": 0.033147696405649185,
+          "max_mse": 0.050243619829416275,
+          "episodes": [
+            {
+              "episode_id": 4,
+              "transitions": 1000,
+              "mse": 0.04474407806992531
+            },
+            {
+              "episode_id": 13,
+              "transitions": 1000,
+              "mse": 0.04004458338022232
+            },
+            {
+              "episode_id": 23,
+              "transitions": 1000,
+              "mse": 0.045000191777944565
+            },
+            {
+              "episode_id": 26,
+              "transitions": 1000,
+              "mse": 0.033147696405649185
+            },
+            {
+              "episode_id": 34,
+              "transitions": 1000,
+              "mse": 0.0424916036427021
+            },
+            {
+              "episode_id": 40,
+              "transitions": 1000,
+              "mse": 0.043360527604818344
+            },
+            {
+              "episode_id": 42,
+              "transitions": 1000,
+              "mse": 0.03979025408625603
+            },
+            {
+              "episode_id": 49,
+              "transitions": 1000,
+              "mse": 0.037798572331666946
+            },
+            {
+              "episode_id": 63,
+              "transitions": 1000,
+              "mse": 0.04527464136481285
+            },
+            {
+              "episode_id": 71,
+              "transitions": 1000,
+              "mse": 0.04799738898873329
+            },
+            {
+              "episode_id": 78,
+              "transitions": 1000,
+              "mse": 0.043932609260082245
+            },
+            {
+              "episode_id": 79,
+              "transitions": 1000,
+              "mse": 0.050243619829416275
+            },
+            {
+              "episode_id": 92,
+              "transitions": 1000,
+              "mse": 0.040439803153276443
+            },
+            {
+              "episode_id": 93,
+              "transitions": 1000,
+              "mse": 0.04482968896627426
+            },
+            {
+              "episode_id": 95,
+              "transitions": 1000,
+              "mse": 0.0356520339846611
+            }
+          ]
+        }
+      }
+    }
+  },
+  "headline": {
+    "test_r2_all_dims": 0.6861356496810913,
+    "test_r2_excluding_action_3": 0.87806636095047,
+    "test_train_variance_normalized_mse_all_dims": 0.302609384059906,
+    "test_train_variance_normalized_mse_excluding_action_3": 0.12137570977210999,
+    "action_3": {
+      "name": "action_3",
+      "mse": 0.15283484756946564,
+      "rmse": 0.39094096422195435,
+      "mae": 0.25641533732414246,
+      "train_variance_normalized_mse": 1.0275441408157349,
+      "r2": -0.08158707618713379,
+      "target_split_variance": 0.1413061022758484,
+      "target_train_variance": 0.14873798191547394
+    },
+    "mean_action_baseline": {
+      "test_train_variance_normalized_mse_all_dims": 0.9818307161331177,
+      "test_train_variance_normalized_mse_excluding_action_3": 0.9897770285606384
+    },
+    "probe_comparison": {
+      "probe_test_r2_all_dims": 0.4354148805141449,
+      "probe_test_r2_excluding_action_3": 0.71210777759552,
+      "delta_vs_probe_all_dims": 0.2507207691669464,
+      "delta_vs_probe_excluding_action_3": 0.16595858335494995,
+      "large_discrepancy_threshold_abs": 0.1,
+      "large_discrepancy_vs_probe_all_dims": true,
+      "large_discrepancy_vs_probe_excluding_action_3": true
+    }
+  },
+  "gate": {
+    "baseline_test_train_variance_normalized_mse": 0.9818307161331177,
+    "readout_test_train_variance_normalized_mse": 0.302609384059906,
+    "relative_improvement": 0.6917906731908784,
+    "test_action_dims_improved": 4,
+    "test_action_dims_total": 5,
+    "passed": true
+  },
+  "artifacts": {
+    "summary_json": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_readout_summary.json",
+    "log": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_readout.log",
+    "model_checkpoint": "/workspace/lewm-p1-inversedynamics/p1-cube/gap_test/outputs/arm_a_conditioned/arm_a_readout_best.pt"
+  }
+}

@@ -17,10 +17,13 @@ class JEPA(nn.Module):
         action_encoder,
         projector=None,
         pred_proj=None,
+        encoder_gradient_checkpointing: bool = False,
     ):
         super().__init__()
 
         self.encoder = encoder
+        if encoder_gradient_checkpointing and hasattr(self.encoder, "gradient_checkpointing_enable"):
+            self.encoder.gradient_checkpointing_enable()
         self.predictor = predictor
         self.action_encoder = action_encoder
         self.projector = projector or nn.Identity()

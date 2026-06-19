@@ -1,0 +1,8 @@
+{"event": "start", "device": "mps", "seed": 2026, "max_epochs": 500, "patience": 50, "batch_size": 512, "lr": 0.001, "weight_decay": 0.0001}
+{"event": "epoch", "epoch": 1, "train_normalized_mse": 0.5488221049308777, "val_normalized_mse": 0.6042395234107971}
+{"event": "epoch", "epoch": 10, "train_normalized_mse": 0.24062825739383698, "val_normalized_mse": 0.49215638637542725}
+{"event": "epoch", "epoch": 20, "train_normalized_mse": 0.1634570062160492, "val_normalized_mse": 0.5161654353141785}
+{"event": "epoch", "epoch": 30, "train_normalized_mse": 0.1326330602169037, "val_normalized_mse": 0.5196317434310913}
+{"event": "epoch", "epoch": 40, "train_normalized_mse": 0.11344178020954132, "val_normalized_mse": 0.5357310771942139}
+{"event": "epoch", "epoch": 50, "train_normalized_mse": 0.09753523021936417, "val_normalized_mse": 0.5432054996490479}
+{"event": "epoch", "epoch": 60, "train_normalized_mse": 0.08832918852567673, "val_normalized_mse": 0.5508298277854919}
