@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "storage_id": "lewm-governed-storage-v1",
+  "volume_name": "ChildLens_Governed",
+  "volume_uuid": "C4E3E4D2-BC24-45D8-9BD0-F7F477F1EC90",
+  "default_root": "/Volumes/ChildLens_Governed/lewm-storage",
+  "marker": ".lewm-storage.json",
+  "stablewm_relative": "stable-worldmodel",
+  "p1_hdf5_relative": "lewm-p1-inversedynamics/p1-cube/data/lewm_hdf5",
+  "manifest_relative": "manifest.json"
+}

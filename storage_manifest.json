@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "storage_id": "lewm-governed-storage-v1",
+  "generated_at": "2026-08-09",
+  "storage_root": "/Volumes/ChildLens_Governed/lewm-storage",
+  "artifacts": [
+    {
+      "relative_path": "stable-worldmodel/source_downloads/lewm-cube/extracted/cube_single_expert.h5",
+      "role": "provenance_source",
+      "bytes": 101942558720,
+      "sha256": "0664d507c4ff12009010644c9ae950836f954e700c172ccf22e7423af1a55625",
+      "source": "https://huggingface.co/datasets/quentinll/lewm-cube",
+      "source_revision": "02a19a67a0dc8c9d6215f89c19e0a597691e152a"
+    },
+    {
+      "relative_path": "stable-worldmodel/datasets/reacher.h5",
+      "role": "provenance_source",
+      "bytes": 98905882624,
+      "sha256": "85a7dddfa1801302abcb175a80a23bb69c78291dd977ce40d69aedcb9123da06",
+      "source": "https://huggingface.co/datasets/quentinll/lewm-reacher",
+      "source_revision": null
+    },
+    {
+      "relative_path": "stable-worldmodel/datasets/tworoom.h5",
+      "role": "provenance_source",
+      "bytes": 12775849984,
+      "sha256": "129a36aa93ea0de488d2bcc876e396de9e3907bf66c6aae6394e542ef6a6d623",
+      "source": "https://huggingface.co/datasets/quentinll/lewm-tworooms",
+      "source_revision": "6903a2de048b13819d812da0b4dd661290bc01e4"
+    },
+    {
+      "relative_path": "lewm-p1-inversedynamics/p1-cube/data/lewm_hdf5/visual_cube_single_play_pretrain_pool.h5",
+      "role": "frozen_p1_split",
+      "bytes": 12818136856,
+      "sha256": "8932c0b8d3cc955296d786eab932f07d46a3c31c334bf2d8d3c79545bb281029"
+    },
+    {
+      "relative_path": "lewm-p1-inversedynamics/p1-cube/data/lewm_hdf5/visual_cube_single_play_readout_heldout.h5",
+      "role": "frozen_p1_split",
+      "bytes": 1285714448,
+      "sha256": "79d8664e011eb1833751b2f6df5da5fc358297988868bd4882d7b6e1705654ac"
+    },
+    {
+      "relative_path": "lewm-p1-inversedynamics/p1-cube/data/lewm_hdf5/visual_cube_single_play_split_manifest.json",
+      "role": "split_manifest",
+      "bytes": 1452,
+      "sha256": "1aae121926a693685ab24957ee131f353fcaf977fd5e72610c9b5d8b12748a44"
+    },
+    {
+      "relative_path": "stable-worldmodel/checkpoints",
+      "role": "locally_unique_checkpoint_tree",
+      "bytes": 2096324872,
+      "files": 38,
+      "tree_sha256": "f27b2fbc88748a97b6df51e12b822306c3f865706cfd69ef0c5629e6c89b47fc",
+      "tree_hash_format": "sha256(relative-file-sha256 + two spaces + relative-path + newline, sorted by relative-path)"
+    }
+  ],
+  "reproducible_exclusions": [
+    "stable-worldmodel/datasets/*.lance",
+    "stable-worldmodel/datasets/__manifest",
+    "stable-worldmodel/hf",
+    "stable-worldmodel/hf_cube",
+    "stable-worldmodel/hf_pusht",
+    "stable-worldmodel/source archives that duplicate preserved extracted HDF5",
+    "local caches and generated run outputs"
+  ]
+}

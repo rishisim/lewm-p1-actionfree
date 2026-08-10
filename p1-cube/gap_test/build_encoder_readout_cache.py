@@ -19,15 +19,19 @@ from omegaconf import OmegaConf
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
 LEWM_DIR = REPO / "le-wm"
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
 if str(LEWM_DIR) not in sys.path:
     sys.path.insert(0, str(LEWM_DIR))
 
 import hydra  # noqa: E402
+from lewm_storage import p1_hdf5_dir, require_external_storage  # noqa: E402
 from train import remap_legacy_vit_keys  # noqa: E402
 from utils import get_img_preprocessor  # noqa: E402
 
+require_external_storage()
 
-DEFAULT_HDF5 = ROOT / "data" / "lewm_hdf5" / "visual_cube_single_play_readout_heldout.h5"
+DEFAULT_HDF5 = p1_hdf5_dir() / "visual_cube_single_play_readout_heldout.h5"
 DEFAULT_SPLIT = ROOT / "gap_test" / "outputs" / "heldout_readout_split_seed2026.json"
 DEFAULT_OUT = ROOT / "gap_test" / "outputs" / "arm_a_conditioned" / "arm_a_encoder_transitions.npz"
 

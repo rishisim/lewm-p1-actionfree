@@ -16,6 +16,8 @@ from pathlib import Path
 os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 for rel in ("stable-worldmodel-readonly", "stable-pretraining-readonly", "le-wm"):
     path = str(ROOT / rel)
     if path not in sys.path:
@@ -24,6 +26,7 @@ for rel in ("stable-worldmodel-readonly", "stable-pretraining-readonly", "le-wm"
 import stable_pretraining as spt  # noqa: E402
 import stable_worldmodel as swm  # noqa: E402
 import torch  # noqa: E402
+from lewm_storage import require_external_storage  # noqa: E402
 from torchvision.transforms import v2 as transforms  # noqa: E402
 
 
@@ -63,8 +66,9 @@ def img_transform():
 
 
 def main() -> None:
-    dataset_path = Path.home() / ".stable_worldmodel" / "datasets" / "pusht_expert_train.h5"
-    object_ckpt = Path.home() / ".stable_worldmodel" / "pusht" / "lewm_object.ckpt"
+    stablewm_root = require_external_storage()
+    dataset_path = stablewm_root / "datasets" / "pusht_expert_train.h5"
+    object_ckpt = stablewm_root / "pusht" / "lewm_object.ckpt"
     if not dataset_path.exists():
         raise FileNotFoundError(f"Missing required dataset: {dataset_path}")
     if not object_ckpt.exists():

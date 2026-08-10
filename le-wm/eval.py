@@ -1,12 +1,20 @@
 import os
 import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from lewm_storage import require_external_storage
+
+require_external_storage()
 
 os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")
 if sys.platform != "darwin":
     os.environ.setdefault("MUJOCO_GL", "egl")
 
 import time
-from pathlib import Path
 
 import hydra
 import numpy as np

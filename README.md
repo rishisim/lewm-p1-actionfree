@@ -22,3 +22,15 @@ Proposal 1 workspace for action-free pretraining plus inverse dynamics.
 ## Excluded
 
 This repository intentionally excludes local virtual environments, Python caches, large dataset caches, checkpoints, videos, and transient Hydra/output folders.
+
+## External Storage
+
+Authoritative source datasets and locally unique checkpoints live on the
+governed USB volume at `/Volumes/ChildLens_Governed/lewm-storage`. The canonical
+layout, checksums, and recovery procedure are recorded in
+`docs/external_storage.md`, `storage.json`, and `storage_manifest.json`.
+
+Run `python lewm_storage.py` as a preflight. The core training and evaluation
+entrypoints and the local Cube readout-cache builder run the same preflight
+automatically and stop with a clear message when the USB is not connected.
+Prepared remote machines must set `LEWM_STORAGE_ROOT` to their governed copy.
